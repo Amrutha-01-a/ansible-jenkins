@@ -1,15 +1,15 @@
 ---
-- name: nginx install & start services
+- name: Install OpenJDK 11 on Ubuntu
   hosts: all
-  become : true
+  become: true
 
   tasks:
-  - name: install nginx
-    yum:
-      name: nginx
-      state: latest
+    - name: Update apt cache
+      apt:
+        update_cache: yes
 
-  - name: start nginx
-    service:
-      name: nginx
-      state: started
+    - name: Install OpenJDK 11
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
